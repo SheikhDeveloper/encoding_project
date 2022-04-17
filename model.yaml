@@ -1,0 +1,52 @@
+openapi: "3.0.0"
+info:
+  title: "Keyboard Encoding API"
+  version: "0.1"
+
+servers:
+  - url: "http://127.0.0.1:8000"
+
+paths:
+  /chars/{char_encoding}:
+    get:
+      summary: "Returns the encoded utf-8 character"
+      parameters:
+        - name: "char_encoding"
+          in: "path"
+          required: true
+          description: "A number representing a character in utf-8 encoding system"
+          schema:
+            type: "string"
+            example: '1070'
+      responses:
+        "200":
+          description: "An encoded character"
+          content:
+            application/json:
+              schema:
+                type: "string"
+                example: "Ю"
+        "404":
+          description: "A character with the specified encoding was not found"
+  
+  /encodings/{char}:
+    get:
+      summary: "Returns the encoding of a utf-8 character"
+      parameters:
+      - name: "char"
+        in: "path"
+        required: true
+        description: "A utf-8 encoded character"
+        schema:
+          type: "string"
+          example: "н"
+      responses:
+        "200":
+          description: "A utf-8 character code"
+          content:
+            application/json:
+              schema:
+                type: "string"
+                example: '1085'
+        "404":
+          description: "No encoding for the character was found"
