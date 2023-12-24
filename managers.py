@@ -7,11 +7,11 @@ class DBmanager:
 		with open('password.txt') as f:
 			passw = f.read()
 		self.con = pymysql.connect(host='localhost',
-									user='root',
-									password=passw,
-									db='encoding',
-									charset='utf8mb4',
-									cursorclass=DictCursor)
+						user='root',
+						password=passw,
+						db='encoding',
+						charset='utf8mb4',
+						cursorclass=DictCursor)
 		self.curs = self.con.cursor()
 
 	def encoding_query(self, symbol: str) -> str:
